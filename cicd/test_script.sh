@@ -5,8 +5,10 @@ echo "Start test"
 cd src && make clean && make
 
 echo "2
-1 2
-3 -1" > input.txt
+1
+2
+3
+-1" > input.txt
 
 ./matrix_task < input.txt > output.txt
 
