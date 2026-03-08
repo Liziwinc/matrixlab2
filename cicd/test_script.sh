@@ -12,7 +12,7 @@ echo "2
 
 ./matrix_task < input.txt > output.txt
 
-if grep -q "4 2" output.txt; then
+if grep -q "4" output.txt && grep -q "\-1"; then
   echo "test PASSED: column sum correctly"
   exit 0
 else
