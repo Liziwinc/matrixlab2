@@ -16,7 +16,7 @@ Section: utils
 Priority: optional
 Architecture: amd64
 Maintainer: Mikhail
-Description: Matrix processing tool for Lab 2.
+Description: Lab 2.
 EOF
 
 echo "Compiling and installing..."
