@@ -1,0 +1,31 @@
+name: Matrix CI
+
+on: [push]
+
+jobs:
+  build-test-package:
+    runs-on: ubuntu-latest # Бесплатный сервер от GitHub
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: |
+          cd src
+          make
+
+      - name: Run Tests
+        run: |
+          chmod +x cicd/test_script.sh
+          ./cicd/test_script.sh
+
+      - name: Package
+        run: |
+          chmod +x cicd/build_deb.sh
+          ./cicd/build_deb.sh
+
+      - name: Save Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: matrix-deb-package
+          path: "*.deb"

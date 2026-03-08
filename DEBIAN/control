@@ -1,0 +1,7 @@
+Package: matrix-task
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Misha <email@example.com>
+Description: program var.9

@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+  - package
+
+build_job:
+  stage: build
+  script:
+    - cd src && make
+  artifacts:
+    paths:
+      - src/matrix_task
+
+test_job:
+  stage: test
+  script: 
+    - chmod +x cicd/test_script.sh
+    - ./cicd/test_script.sh
+
+package_job:
+  stage: package
+  script:
+    - chmod +x cicd/build_deb.sh
+    - ./cicd/build_deb.sh
+  artifacts:
+    paths:
+      - "*.deb"
