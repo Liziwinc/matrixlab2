@@ -29,3 +29,26 @@ jobs:
         with:
           name: matrix-deb-package
           path: "*.deb"
+          
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-test-package
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download .deb artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: matrix-deb-package
+
+      - name: List downloaded files (debug)
+        run: ls -la *.deb
+
+      - name: Build Docker image
+        run: |
+          docker build -t matrix-app:latest .
+
+      - name: Run container and test
+        run: |
+          docker run --rm matrix-app:latest
