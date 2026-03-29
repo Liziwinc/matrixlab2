@@ -9,6 +9,5 @@ RUN dpkg -i /tmp/matrix-task_1.0.deb || apt-get install -f -y && dpkg -i /tmp/ma
 
 RUN rm /tmp/*.deb
 
-RUN echo "2\n1\n2\n3\n-1" > /tmp/input.txt
 
 ENTRYPOINT ["matrix_task"]

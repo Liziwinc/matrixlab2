@@ -18,7 +18,7 @@ int getValidInt(int min_num = -1e9, int max_num = 1e9) {
 }
 
 int main() {
-    cout << "Input size 1-100";
+    cout << "Input size 1-100: ";
     int n = getValidInt(1, 100);//!!!
 
     vector<vector<int>> matrix(n, vector<int>(n));
