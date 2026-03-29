@@ -20,8 +20,8 @@ test_case "2 2 2 3 4" "5"
 
 test_case "1 -5" "-5"
 
-test_case "$(printf "abc\n1\n-5")" "Error!" "Validation: letter instead of size"
+test_case "abc\n1\n-5" "Error!"
 
-test_case "101 1 10" "Error!" "Validation: size out of range"
+test_case "101\n1\n10" "Error!"
 
 echo "Done. All tests passed."
