@@ -5,7 +5,7 @@ cd src && make clean && make && cd ..
 
 test_case() {
     echo "Testing input: $1"
-    if echo "$1" | ./src/matrix_task | grep -q "$2"; then
+    if echo "$1" | ./src/matrix_task | grep -q -e "$2"; then
         echo "OK"
     else
         echo "FAILED: expected $2"
