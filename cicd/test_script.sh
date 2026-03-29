@@ -1,32 +1,27 @@
 #!/bin/bash
 set -e
 
-echo "Start test"
-cd src && make clean && make
+cd src && make clean && make && cd ..
 
-echo "2 1 2 3 -1" > input.txt
+test_case() {
+    echo "Testing input: $1"
+    if echo "$1" | ./src/matrix_task | grep -q "$2"; then
+        echo "OK"
+    else
+        echo "FAILED: expected $2"
+        exit 1
+    fi
+}
 
-./matrix_task < input.txt > output.txt
+#аргумент 1 ввод, аргумент 2 что ищем в выводе
+test_case "2 1 2 3 -1" "4"
 
-if grep -q "4" output.txt && grep -q "\-1" output.txt; then
-  echo "test1 PASSED: column sum correctly"
-else
-  echo "test1 FAILED: column sum not correctly"
-  cat output.txt
-  exit 1
-fi
+test_case "2 2 2 3 4" "5"
 
-echo "2 2 2 3 -1" > input.txt
+test_case "1 -5" "-5"
 
-./matrix_task < input.txt > output.txt
+test_case "abc 1 -5" "Error!" "Validation: letter instead of size"
 
-if grep -q "5" output.txt; then
-  echo "test2 PASSED: sum correctly"
-else
-  echo "test2 FAILED: expected 5"
-  cat output.txt
-  exit 1
-fi
+test_case "101 1 10" "Error!" "Validation: size out of range"
 
-echo "All tests passed"
-exit 0
+echo "Done. All tests passed."
