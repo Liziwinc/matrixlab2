@@ -20,7 +20,7 @@ test_case "2 2 2 3 4" "5"
 
 test_case "1 -5" "-5"
 
-test_case "abc 1 -5" "Error!" "Validation: letter instead of size"
+test_case "$(printf "abc\n1\n-5")" "Error!" "Validation: letter instead of size"
 
 test_case "101 1 10" "Error!" "Validation: size out of range"
 
